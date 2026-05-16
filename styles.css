@@ -169,6 +169,13 @@ section {
   border: 1px solid var(--accent);
   opacity: 0.35;
 }
+.nav-logo-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: inline-block;
+  border-radius: 6px;
+}
 .nav-logo small {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;

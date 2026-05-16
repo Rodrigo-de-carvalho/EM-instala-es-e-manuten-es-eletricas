@@ -30,6 +30,8 @@ const Icon = ({ name, size = 22, stroke = 1.6 }) => {
     eye: (<g><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></g>),
     clock: (<g><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></g>),
     cog: (<g><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M5 12H2M22 12h-3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1l2.1-2.1M17 7l2.1-2.1" /></g>),
+    ac: (<g><rect x="1" y="4" width="22" height="9" rx="2" /><path d="M8 13v4M12 13v5M16 13v4" /><path d="M5 17h14" /></g>),
+    cam: (<g><path d="M23 7l-7 5 7 5V7z" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></g>),
   };
   return <svg {...common}>{paths[name]}</svg>;
 };
@@ -171,7 +173,8 @@ const Nav = ({ page, navigate }) => {
     <nav className="nav">
       <div className="container nav-inner">
         <button className="nav-logo" onClick={() => go("home")}>
-          <span className="em-mark">EM</span>
+          <img src="logo.jpeg" alt="EM Elétrica" className="nav-logo-img" onError={e => { e.target.style.display="none"; e.target.nextSibling.style.display="inline"; }} />
+          <span className="em-mark" style={{display:"none"}}>EM</span>
           <span>
             EM Elétrica
             <br />
@@ -281,6 +284,8 @@ const Ticker = () => {
     "★ Subestações",
     "★ Pequenos serviços",
     "★ Quadros de distribuição",
+    "★ Ar-condicionado · Split · VRF",
+    "★ Câmeras de segurança · CFTV",
   ];
   return (
     <div className="ticker">
@@ -353,16 +358,26 @@ const Servicos = () => {
       desc: "Desenvolvimento de projetos elétricos residenciais, comerciais e industriais com memorial de cálculo.",
       tags: ["Projeto", "Memorial", "Cálculo"], span: 4,
     },
+    {
+      n: "10", icon: "ac", title: "Ar-condicionado",
+      desc: "Instalação e manutenção de ar-condicionados residenciais, comerciais e industriais. Split, cassete, janela e VRF. Limpeza, recarga de gás e revisão de componentes.",
+      tags: ["Instalação", "Manutenção", "Split", "Limpeza", "VRF"], span: 6,
+    },
+    {
+      n: "11", icon: "cam", title: "Câmeras de segurança",
+      desc: "Instalação e configuração de sistemas CFTV, câmeras IP, DVR e NVR. Monitoramento residencial e comercial com acesso remoto pelo celular.",
+      tags: ["CFTV", "Câmera IP", "DVR/NVR", "Monitoramento", "Remoto"], span: 6,
+    },
   ];
   return (
     <section id="servicos">
       <SectionHead
         num="// 01"
         label="O que fazemos"
-        title="Tudo que envolve <span class='accent'>fio, força</span> e luz."
+        title="Tudo que envolve <span class='accent'>fio, força,</span> ar e imagem."
       >
-        Atendemos do reparo emergencial à obra elétrica completa — sempre com
-        equipe própria, projeto técnico e responsabilidade documentada.
+        Atendemos do reparo emergencial à obra completa — elétrica, ar-condicionado
+        e câmeras de segurança. Equipe própria, projeto técnico e responsabilidade documentada.
       </SectionHead>
       <div className="container">
         <div className="services">
@@ -370,7 +385,7 @@ const Servicos = () => {
             <Reveal key={s.n} delay={(parseInt(s.n) - 1) * 60}>
               <div className={`service span-${s.span} ${s.featured ? "featured" : ""}`}>
                 <div className="svc-top">
-                  <div className="svc-num">{s.n} / 09</div>
+                  <div className="svc-num">{s.n} / {String(list.length).padStart(2,"0")}</div>
                   <div className="svc-icon"><Icon name={s.icon} size={32} stroke={1.4} /></div>
                 </div>
                 <div>
@@ -702,6 +717,10 @@ const Contato = () => {
                     <option>Disjuntor / DPS</option>
                     <option>Projeto elétrico</option>
                     <option>Laudo / ART</option>
+                    <option>Ar-condicionado · Instalação</option>
+                    <option>Ar-condicionado · Manutenção / limpeza</option>
+                    <option>Câmeras de segurança · Instalação</option>
+                    <option>Câmeras de segurança · Configuração</option>
                     <option>Outro</option>
                   </select>
                 </div>
@@ -743,6 +762,8 @@ const Footer = ({ navigate }) => (
             <li><a href="#servicos">SPDA</a></li>
             <li><a href="#servicos">Projetos elétricos</a></li>
             <li><a href="#servicos">Pequenos serviços</a></li>
+            <li><a href="#servicos">Ar-condicionado</a></li>
+            <li><a href="#servicos">Câmeras de segurança</a></li>
           </ul>
         </div>
         <div className="footer-col">
@@ -782,6 +803,8 @@ const HomeServicesTeaser = ({ navigate }) => {
     { icon: "wrench",  title: "Manutenção elétrica",  d: "Preventiva, corretiva, termografia." },
     { icon: "bolt",    title: "Pequenos serviços",    d: "Lustres, ventiladores, chuveiros, ar-cond. e muito mais." },
     { icon: "eye",     title: "Projetos elétricos",   d: "Projetos com memorial de cálculo." },
+    { icon: "ac",      title: "Ar-condicionado",      d: "Instalação e manutenção de splits e VRF." },
+    { icon: "cam",     title: "Câmeras de segurança", d: "CFTV, câmera IP, DVR/NVR e acesso remoto." },
   ];
   return (
     <section>
