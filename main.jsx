@@ -163,34 +163,67 @@ const usePage = () => {
 };
 
 // ---------------------------- NAV
-const Nav = ({ page, navigate }) => (
-  <nav className="nav">
-    <div className="container nav-inner">
-      <button className="nav-logo" onClick={() => navigate("home")}>
-        <span className="em-mark">EM</span>
-        <span>
-          EM Elétrica
-          <br />
-          <small>CREA · NR-10 · Seg–Sáb 7h–17h</small>
-        </span>
-      </button>
-      <div className="nav-links">
-        {PAGES.filter(p => p.id !== "home" && p.id !== "contato").map(p => (
-          <button
-            key={p.id}
-            className={"nav-link" + (page === p.id ? " active" : "")}
-            onClick={() => navigate(p.id)}
-          >
-            {p.label}
-          </button>
-        ))}
+const Nav = ({ page, navigate }) => {
+  const [open, setOpen] = React.useState(false);
+  const go = (id) => { setOpen(false); navigate(id); };
+
+  return (
+    <nav className="nav">
+      <div className="container nav-inner">
+        <button className="nav-logo" onClick={() => go("home")}>
+          <span className="em-mark">EM</span>
+          <span>
+            EM Elétrica
+            <br />
+            <small>CREA · NR-10 · Seg–Sáb 7h–17h</small>
+          </span>
+        </button>
+
+        <div className="nav-links">
+          {PAGES.filter(p => p.id !== "home" && p.id !== "contato").map(p => (
+            <button
+              key={p.id}
+              className={"nav-link" + (page === p.id ? " active" : "")}
+              onClick={() => navigate(p.id)}
+            >{p.label}</button>
+          ))}
+        </div>
+
+        <button className="nav-cta" onClick={() => navigate("contato")}>
+          Orçamento grátis <Icon name="arrow" size={14} />
+        </button>
+
+        <button
+          className={"nav-hamburger" + (open ? " is-open" : "")}
+          onClick={() => setOpen(v => !v)}
+          aria-label="Menu"
+        >
+          <span /><span /><span />
+        </button>
       </div>
-      <button className="nav-cta" onClick={() => navigate("contato")}>
-        Orçamento grátis <Icon name="arrow" size={14} />
-      </button>
-    </div>
-  </nav>
-);
+
+      {open && (
+        <div className="nav-drawer">
+          {PAGES.filter(p => p.id !== "home").map(p => (
+            <button
+              key={p.id}
+              className={"nav-drawer-link" + (page === p.id ? " active" : "")}
+              onClick={() => go(p.id)}
+            >
+              <span>{p.label}</span>
+              <Icon name="arrow" size={14} />
+            </button>
+          ))}
+          <div className="nav-drawer-footer">
+            <button className="nav-drawer-cta" onClick={() => go("contato")}>
+              Orçamento grátis <Icon name="arrow" size={16} />
+            </button>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
 
 // ---------------------------- PAGE HERO (for non-home pages)
 const PageHero = ({ kicker, title, sub }) => (
@@ -239,7 +272,7 @@ const Hero = ({ navigate }) => (
 const Ticker = () => {
   const items = [
     "★ Obras residenciais",
-    "★ Comercial · Industrial",
+    "★ Comercial · Industrial · Saúde",
     "★ Padrão de entrada",
     "★ SPDA / Aterramento",
     "★ Manutenção elétrica",
@@ -261,15 +294,65 @@ const Ticker = () => {
 // ---------------------------- SERVIÇOS
 const Servicos = () => {
   const list = [
-    { n: "01", icon: "house", title: "Instalações residenciais", desc: "Projeto e execução completa, do fio à tomada. Casas, apartamentos, reformas e obras novas.", tags: ["Reformas", "Obras novas", "Padrão"], featured: true, span: 6 },
-    { n: "02", icon: "factory", title: "Industrial & comercial", desc: "Lojas, galpões, fábricas. Cargas trifásicas, motores, comandos elétricos e painéis.", tags: ["Trifásico", "Motores"], span: 6 },
-    { n: "03", icon: "panel", title: "Quadros de distribuição", desc: "Montagem, expansão e padronização de QDC e QGBT com disjuntores DR e DPS.", tags: ["QDC", "QGBT", "DPS"], span: 4 },
-    { n: "04", icon: "plug", title: "Padrão de entrada", desc: "Padrão de concessionária dentro da norma, pronto para vistoria.", tags: ["Concessionária"], span: 4 },
-    { n: "05", icon: "spda", title: "SPDA & aterramento", desc: "Para-raios, hastes, malha de aterramento e medição de resistência de terra.", tags: ["Para-raios", "ART"], span: 4 },
-    { n: "06", icon: "wrench", title: "Manutenção preventiva & corretiva", desc: "Contratos mensais, inspeção termográfica, troca de componentes e relatórios técnicos.", tags: ["Termografia", "Contratos"], span: 4 },
-    { n: "07", icon: "bolt", title: "Pequenos serviços", desc: "Troca de tomadas, interruptores, substituição de lustres, disjuntores e demais reparos do dia a dia.", tags: ["Tomadas", "Interruptores", "Disjuntores"], span: 4 },
-    { n: "08", icon: "shield", title: "Laudos & ART", desc: "Laudos NR-10, NR-12 e responsabilidade técnica documentada quando exigido pela obra.", tags: ["NR-10", "Laudos"], span: 4 },
-    { n: "09", icon: "eye", title: "Projetos elétricos", desc: "Desenvolvimento de projetos elétricos residenciais, comerciais e industriais com memorial de cálculo.", tags: ["Projeto", "Memorial", "Cálculo"], span: 4 },
+    {
+      n: "01", icon: "house", title: "Instalações residenciais",
+      desc: "Projeto e execução completa, do fio à tomada. Casas, apartamentos, reformas e obras novas.",
+      tags: ["Reformas", "Obras novas", "Padrão"], featured: true, span: 6,
+    },
+    {
+      n: "02", icon: "factory", title: "Comercial, industrial & saúde",
+      desc: "Lojas, supermercados, escritórios, condomínios, galpões, fábricas, clínicas e hospitais. Instalações completas, motores, comandos elétricos, painéis e adequações técnicas em qualquer porte.",
+      tags: ["Clínicas", "Hospitais", "Galpões", "Motores", "Painéis"], span: 6,
+    },
+    {
+      n: "03", icon: "panel", title: "Quadros de distribuição",
+      desc: "Montagem, expansão e padronização de QDC e QGBT com disjuntores DR e DPS.",
+      tags: ["QDC", "QGBT", "DPS"], span: 4,
+    },
+    {
+      n: "04", icon: "plug", title: "Padrão de entrada",
+      desc: "Padrão de concessionária dentro da norma, pronto para vistoria.",
+      tags: ["Concessionária"], span: 4,
+    },
+    {
+      n: "05", icon: "spda", title: "SPDA & aterramento",
+      desc: "Para-raios, hastes, malha de aterramento e medição de resistência de terra.",
+      tags: ["Para-raios", "ART"], span: 4,
+    },
+    {
+      n: "06", icon: "wrench", title: "Manutenção preventiva & corretiva",
+      desc: "Contratos mensais, inspeção termográfica, troca de componentes e relatórios técnicos.",
+      tags: ["Termografia", "Contratos"], span: 4,
+    },
+    {
+      n: "07", icon: "bolt", title: "Pequenos serviços",
+      desc: "Atendemos demandas pontuais sem burocracia — do serviço rápido ao reparo emergencial.",
+      list: [
+        "Instalação de lustres e luminárias",
+        "Instalação de ventiladores de teto",
+        "Troca de tomadas e interruptores",
+        "Instalação de chuveiro elétrico",
+        "Ponto elétrico para ar-condicionado",
+        "Extensão e novos pontos elétricos",
+        "Instalação de campainha e interfone",
+        "Sensor de presença e automação básica",
+        "Troca de disjuntores e DPS",
+        "Instalação de tomada USB",
+        "Reparo de curto-circuito",
+        "Lâmpada de emergência",
+      ],
+      tags: ["Lustres", "Ventiladores", "Chuveiros", "Ar-cond.", "Tomadas"], span: 12,
+    },
+    {
+      n: "08", icon: "shield", title: "Laudos & ART",
+      desc: "Laudos NR-10, NR-12 e responsabilidade técnica documentada quando exigido pela obra.",
+      tags: ["NR-10", "Laudos"], span: 4,
+    },
+    {
+      n: "09", icon: "eye", title: "Projetos elétricos",
+      desc: "Desenvolvimento de projetos elétricos residenciais, comerciais e industriais com memorial de cálculo.",
+      tags: ["Projeto", "Memorial", "Cálculo"], span: 4,
+    },
   ];
   return (
     <section id="servicos">
@@ -293,6 +376,11 @@ const Servicos = () => {
                 <div>
                   <h3 className="svc-title">{s.title}</h3>
                   <p className="svc-desc">{s.desc}</p>
+                  {s.list && (
+                    <ul className="svc-list">
+                      {s.list.map((item, i) => <li key={i}>{item}</li>)}
+                    </ul>
+                  )}
                   <div className="svc-tags">
                     {s.tags.map(t => <span key={t} className="svc-tag">{t}</span>)}
                   </div>
@@ -481,7 +569,7 @@ const FAQ = () => {
     { q: "O orçamento tem custo?", a: "Não. A visita técnica e o orçamento detalhado são gratuitos e sem compromisso. Em obras maiores, fazemos o levantamento completo, com planilha de materiais, mão de obra e cronograma." },
     { q: "Vocês emitem ART e laudo técnico?", a: "Emitimos ART e laudo técnico nas obras que exigem responsabilidade técnica documentada, como projetos elétricos, instalações maiores e adequações junto à concessionária." },
     { q: "Vocês desenvolvem projetos elétricos?", a: "Sim. Desenvolvemos projetos elétricos residenciais, comerciais e industriais com memorial de cálculo e todas as especificações técnicas necessárias." },
-    { q: "Atendem pequenos serviços?", a: "Sim. Atendemos troca de tomadas, interruptores, substituição de lustres, disjuntores e demais reparos do dia a dia. Entre em contato e passamos o orçamento." },
+    { q: "Atendem pequenos serviços?", a: "Sim. Atendemos: instalação de lustres e luminárias, ventiladores de teto, troca de tomadas e interruptores, instalação de chuveiro elétrico, ponto elétrico para ar-condicionado, extensão e novos pontos elétricos, campainha e interfone, sensor de presença, troca de disjuntores e DPS, instalação de tomada USB, reparo de curto-circuito e lâmpada de emergência. Entre em contato e passamos o orçamento." },
     { q: "Trabalham com obra própria ou subempreitam?", a: "Equipe 100% própria, registrada, uniformizada e com NR-10 atualizada. Não terceirizamos mão de obra crítica, é o que garante padrão de execução e responsabilidade técnica." },
     { q: "Atendem fora da capital?", a: "Sim, atendemos região metropolitana e cidades próximas. Para obras de maior porte, deslocamos a equipe para qualquer cidade do estado mediante orçamento prévio." },
     { q: "Qual o horário de atendimento?", a: "Atendemos de segunda a sábado, das 7h às 17h. Para dúvidas e orçamentos, entre em contato pelo WhatsApp ou e-mail." },
@@ -599,11 +687,19 @@ const Contato = () => {
                     <option>Instalação residencial</option>
                     <option>Instalação comercial</option>
                     <option>Instalação industrial</option>
+                    <option>Instalação em clínica ou hospital</option>
                     <option>Padrão de entrada / concessionária</option>
                     <option>Quadro de distribuição (QDC / QGBT)</option>
                     <option>SPDA / aterramento</option>
                     <option>Manutenção preventiva ou corretiva</option>
-                    <option>Pequenos serviços (tomadas, interruptores, lustres…)</option>
+                    <option>Lustre / luminária</option>
+                    <option>Ventilador de teto</option>
+                    <option>Chuveiro elétrico</option>
+                    <option>Ponto de ar-condicionado</option>
+                    <option>Tomadas e interruptores</option>
+                    <option>Campainha / interfone</option>
+                    <option>Sensor de presença</option>
+                    <option>Disjuntor / DPS</option>
                     <option>Projeto elétrico</option>
                     <option>Laudo / ART</option>
                     <option>Outro</option>
@@ -642,7 +738,8 @@ const Footer = ({ navigate }) => (
           <h6>// Serviços</h6>
           <ul>
             <li><a href="#servicos">Residencial</a></li>
-            <li><a href="#servicos">Industrial</a></li>
+            <li><a href="#servicos">Comercial & industrial</a></li>
+            <li><a href="#servicos">Clínicas & hospitais</a></li>
             <li><a href="#servicos">SPDA</a></li>
             <li><a href="#servicos">Projetos elétricos</a></li>
             <li><a href="#servicos">Pequenos serviços</a></li>
@@ -679,11 +776,11 @@ const Footer = ({ navigate }) => (
 const HomeServicesTeaser = ({ navigate }) => {
   const items = [
     { icon: "house",   title: "Residencial",          d: "Casas, apartamentos e reformas." },
-    { icon: "factory", title: "Industrial",           d: "Galpões, fábricas, trifásico." },
+    { icon: "factory", title: "Comercial, industrial & saúde", d: "Lojas, galpões, fábricas, clínicas e hospitais." },
     { icon: "panel",   title: "Quadros & padrões",    d: "QDC, QGBT, padrão concessionária." },
     { icon: "spda",    title: "SPDA / aterramento",   d: "Para-raios e malha." },
     { icon: "wrench",  title: "Manutenção elétrica",  d: "Preventiva, corretiva, termografia." },
-    { icon: "bolt",    title: "Pequenos serviços",    d: "Tomadas, interruptores, lustres." },
+    { icon: "bolt",    title: "Pequenos serviços",    d: "Lustres, ventiladores, chuveiros, ar-cond. e muito mais." },
     { icon: "eye",     title: "Projetos elétricos",   d: "Projetos com memorial de cálculo." },
   ];
   return (
@@ -721,20 +818,23 @@ const HomeCTA = ({ navigate }) => (
   <section className="home-cta">
     <div className="container">
       <div className="home-cta-inner">
-        <div>
-          <div className="eyebrow" style={{color: "var(--accent-ink)", opacity: 0.65}}>// Tudo começa aqui</div>
-          <h2 className="display home-cta-title">
-            Sua obra<br/>
-            <span style={{WebkitTextStroke: "2px var(--accent-ink)", color: "transparent"}}>energizada.</span>
-          </h2>
-          <p className="home-cta-sub">Visita técnica gratuita. Orçamento detalhado e sem compromisso.</p>
+        <div className="home-cta-badge">
+          <span className="home-cta-dot" />
+          Visita técnica gratuita · Seg a Sáb 7h–17h
         </div>
-        <div className="home-cta-side">
-          <button className="btn" style={{background: "var(--accent-ink)", color: "var(--accent)", borderColor: "var(--accent-ink)"}} onClick={() => navigate("contato")}>
+        <h2 className="display home-cta-title">
+          Sua obra<br />energizada.
+        </h2>
+        <p className="home-cta-sub">
+          Orçamento detalhado em 24h, sem compromisso. Equipe própria,
+          certificada NR-10, com responsabilidade técnica em cada obra.
+        </p>
+        <div className="home-cta-btns">
+          <button className="home-cta-btn-primary" onClick={() => navigate("contato")}>
             Pedir orçamento <Icon name="arrow" size={16} />
           </button>
-          <a href="https://wa.me/5571991358822" className="btn ghost" style={{borderColor: "var(--accent-ink)", color: "var(--accent-ink)"}}>
-            <Icon name="wa" size={16} /> WhatsApp
+          <a href="https://wa.me/5571991358822" className="home-cta-btn-wa">
+            <Icon name="wa" size={18} /> (71) 9 9135-8822
           </a>
         </div>
       </div>
