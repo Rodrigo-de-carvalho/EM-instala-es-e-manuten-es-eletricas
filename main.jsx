@@ -144,6 +144,7 @@ const PAGES = [
   { id: "obras",        label: "Obras" },
   { id: "faq",          label: "FAQ" },
   { id: "contato",      label: "Contato" },
+  { id: "privacidade",  label: "Privacidade" },
 ];
 
 const usePage = () => {
@@ -183,7 +184,7 @@ const Nav = ({ page, navigate }) => {
         </button>
 
         <div className="nav-links">
-          {PAGES.filter(p => p.id !== "home" && p.id !== "contato").map(p => (
+          {PAGES.filter(p => p.id !== "home" && p.id !== "contato" && p.id !== "privacidade").map(p => (
             <button
               key={p.id}
               className={"nav-link" + (page === p.id ? " active" : "")}
@@ -207,7 +208,7 @@ const Nav = ({ page, navigate }) => {
 
       {open && (
         <div className="nav-drawer">
-          {PAGES.filter(p => p.id !== "home").map(p => (
+          {PAGES.filter(p => p.id !== "home" && p.id !== "privacidade").map(p => (
             <button
               key={p.id}
               className={"nav-drawer-link" + (page === p.id ? " active" : "")}
@@ -619,7 +620,7 @@ const FAQ = () => {
 
 // ---------------------------- CONTATO
 const Contato = () => {
-  const [form, setForm] = React.useState({ nome: "", tel: "", email: "", tipo: "", msg: "" });
+  const [form, setForm] = React.useState({ nome: "", tel: "", email: "", tipo: "", msg: "", aceito: false });
   const [sent, setSent] = React.useState(false);
 
   const handle = (k) => (e) => setForm({ ...form, [k]: e.target.value });
@@ -728,6 +729,23 @@ const Contato = () => {
                   <label>Descreva sua necessidade</label>
                   <textarea placeholder="Conte o que precisa, prazo desejado, endereço aproximado…" value={form.msg} onChange={handle("msg")}></textarea>
                 </div>
+                <div className="field field-check">
+                  <label className="check-label">
+                    <input
+                      type="checkbox"
+                      required
+                      checked={form.aceito}
+                      onChange={e => setForm({...form, aceito: e.target.checked})}
+                    />
+                    <span>
+                      Li e concordo com a{" "}
+                      <button type="button" className="link-inline" onClick={() => window.location.hash = "#privacidade"}>
+                        Política de Privacidade
+                      </button>
+                      . Autorizo o uso dos meus dados para retorno sobre o orçamento solicitado.
+                    </span>
+                  </label>
+                </div>
                 <button type="submit" className="btn" style={{marginTop: 16}}>
                   Enviar pedido <Icon name="arrow" size={16} />
                 </button>
@@ -787,7 +805,10 @@ const Footer = ({ navigate }) => (
       </div>
       <div className="footer-bot">
         <div>© 2026 EM Elétrica · NR-10 · CNPJ 57.594.909/0001-32</div>
-        <div>Engenharia · Obras · Manutenção</div>
+        <div style={{display:"flex", gap:16, flexWrap:"wrap", justifyContent:"flex-end"}}>
+          <span>Engenharia · Obras · Manutenção</span>
+          <a href="#privacidade" style={{color:"var(--text-dim)", textDecoration:"none", fontSize:13}}>Política de Privacidade</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -893,7 +914,81 @@ const WAFloat = () => (
   </a>
 );
 
-Object.assign(window, { Nav, Hero, Ticker, Servicos, Diferenciais, Processo, Obras, Stats, Depoimentos, FAQ, Contato, Footer, WAFloat });
+// ---------------------------- PRIVACIDADE
+const Privacidade = () => (
+  <section className="privacy-page">
+    <div className="container">
+      <div className="eyebrow">// Legal</div>
+      <h1 className="page-hero-title">Política de <span className="accent">Privacidade</span></h1>
+      <div className="privacy-body">
+        <p className="privacy-updated">Vigente desde 16 de maio de 2026 · LGPD — Lei 13.709/2018</p>
+
+        <h3>1. Quem somos</h3>
+        <p><strong>EM Instalações e Manutenções Elétricas</strong><br/>
+        CNPJ: 57.594.909/0001-32<br/>
+        E-mail: <a href="mailto:edsonmoura1003@gmail.com">edsonmoura1003@gmail.com</a><br/>
+        Telefone: (71) 9 9135-8822</p>
+
+        <h3>2. Quais dados coletamos</h3>
+        <p>Coletamos apenas os dados que você preenche voluntariamente no formulário de orçamento: <strong>nome completo, telefone/WhatsApp, e-mail, tipo de serviço e descrição da necessidade.</strong></p>
+
+        <h3>3. Para que usamos</h3>
+        <p>Os dados são usados exclusivamente para responder ao seu pedido de orçamento e entrar em contato sobre o serviço solicitado. Seus dados não serão utilizados para envio de publicidade não solicitada.</p>
+
+        <h3>4. Base legal (LGPD)</h3>
+        <p>O tratamento é fundamentado no seu <strong>consentimento</strong> (Art. 7°, inciso I da Lei 13.709/2018 – LGPD), dado no momento do envio do formulário.</p>
+
+        <h3>5. Como armazenamos</h3>
+        <p>Os dados enviados chegam diretamente ao nosso e-mail e não são gravados em bancos de dados externos. Não utilizamos CRM, plataformas de automação de marketing ou ferramentas de rastreamento.</p>
+
+        <h3>6. Compartilhamento</h3>
+        <p>Seus dados <strong>não são vendidos, alugados ou repassados a terceiros</strong> sob nenhuma circunstância.</p>
+
+        <h3>7. Cookies e rastreamento</h3>
+        <p>Este site <strong>não utiliza cookies de rastreamento ou publicidade</strong>. Não há integração com Google Analytics, Meta Pixel ou ferramentas similares.</p>
+
+        <h3>8. Seus direitos</h3>
+        <p>Conforme a LGPD (Art. 18), você tem direito a:</p>
+        <ul>
+          <li>Confirmar a existência de tratamento dos seus dados</li>
+          <li>Acessar os dados que nos forneceu</li>
+          <li>Corrigir dados incompletos ou desatualizados</li>
+          <li>Solicitar a eliminação dos seus dados</li>
+          <li>Revogar o consentimento a qualquer momento</li>
+        </ul>
+        <p>Para exercer qualquer direito, envie um e-mail para <a href="mailto:edsonmoura1003@gmail.com">edsonmoura1003@gmail.com</a>.</p>
+
+        <h3>9. Encarregado de dados (DPO)</h3>
+        <p>Para dúvidas sobre privacidade e proteção de dados: <a href="mailto:edsonmoura1003@gmail.com">edsonmoura1003@gmail.com</a></p>
+
+        <h3>10. Alterações nesta política</h3>
+        <p>Eventuais atualizações serão publicadas nesta página. Recomendamos consulta periódica.</p>
+      </div>
+    </div>
+  </section>
+);
+
+// ---------------------------- COOKIE BANNER
+const CookieBanner = () => {
+  const [shown, setShown] = React.useState(() => {
+    try { return !localStorage.getItem("em-cookie-ok"); } catch { return true; }
+  });
+  if (!shown) return null;
+  const dismiss = () => {
+    try { localStorage.setItem("em-cookie-ok", "1"); } catch {}
+    setShown(false);
+  };
+  return (
+    <div className="cookie-banner">
+      <p>Este site coleta dados apenas quando você preenche o formulário de contato. Veja nossa{" "}
+        <a href="#privacidade" className="cookie-link" onClick={dismiss}>Política de Privacidade</a>.
+      </p>
+      <button className="cookie-ok" onClick={dismiss}>Entendi</button>
+    </div>
+  );
+};
+
+Object.assign(window, { Nav, Hero, Ticker, Servicos, Diferenciais, Processo, Obras, Stats, Depoimentos, FAQ, Contato, Footer, WAFloat, Privacidade, CookieBanner });
 
 
 /* ============================================================
@@ -924,6 +1019,8 @@ const App = () => {
         return <><FAQ /><InlineCTA navigate={navigate} /></>;
       case "contato":
         return <><Contato /></>;
+      case "privacidade":
+        return <><Privacidade /></>;
       default:
         return <><Hero navigate={navigate} /><Ticker /><HomeServicesTeaser navigate={navigate} /><Depoimentos /><HomeCTA navigate={navigate} /></>;
     }
@@ -938,6 +1035,7 @@ const App = () => {
       </main>
       <Footer navigate={navigate} />
       <WAFloat />
+      <CookieBanner />
 
       <TweaksPanel title="Tweaks">
         <TweakSection label="Paleta">
