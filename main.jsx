@@ -312,22 +312,22 @@ const Servicos = () => {
     {
       n: "03", icon: "panel", title: "Quadros de distribuição",
       desc: "Montagem, expansão e padronização de QDC e QGBT com disjuntores DR e DPS.",
-      tags: ["QDC", "QGBT", "DPS"], span: 4,
+      tags: ["QDC", "QGBT", "DPS"], span: 3,
     },
     {
       n: "04", icon: "plug", title: "Padrão de entrada",
       desc: "Padrão de concessionária dentro da norma, pronto para vistoria.",
-      tags: ["Concessionária"], span: 4,
+      tags: ["Concessionária"], span: 3,
     },
     {
       n: "05", icon: "spda", title: "SPDA & aterramento",
       desc: "Para-raios, hastes, malha de aterramento e medição de resistência de terra.",
-      tags: ["Para-raios", "ART"], span: 4,
+      tags: ["Para-raios", "ART"], span: 3,
     },
     {
       n: "06", icon: "wrench", title: "Manutenção preventiva & corretiva",
       desc: "Contratos mensais, inspeção termográfica, troca de componentes e relatórios técnicos.",
-      tags: ["Termografia", "Contratos"], span: 4,
+      tags: ["Termografia", "Contratos"], span: 3,
     },
     {
       n: "07", icon: "bolt", title: "Pequenos serviços",
@@ -351,12 +351,12 @@ const Servicos = () => {
     {
       n: "08", icon: "shield", title: "Laudos & ART",
       desc: "Laudos NR-10, NR-12 e responsabilidade técnica documentada quando exigido pela obra.",
-      tags: ["NR-10", "Laudos"], span: 4,
+      tags: ["NR-10", "Laudos"], span: 6,
     },
     {
       n: "09", icon: "eye", title: "Projetos elétricos",
       desc: "Desenvolvimento de projetos elétricos residenciais, comerciais e industriais com memorial de cálculo.",
-      tags: ["Projeto", "Memorial", "Cálculo"], span: 4,
+      tags: ["Projeto", "Memorial", "Cálculo"], span: 6,
     },
     {
       n: "10", icon: "ac", title: "Ar-condicionado",
