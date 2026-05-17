@@ -899,7 +899,7 @@ const HomeCTA = ({ navigate }) => (
           Sua obra<br />energizada.
         </h2>
         <p className="home-cta-sub">
-          Orçamento detalhado em 24h, sem compromisso. Equipe própria,
+          Orçamento detalhado das 7h às 17h, sem compromisso. Equipe própria,
           certificada NR-10, com responsabilidade técnica em cada obra.
         </p>
         <div className="home-cta-btns">
