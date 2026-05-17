@@ -394,7 +394,7 @@ const Servicos = () => {
   return (
     <section id="servicos">
       <SectionHead
-        num="// 01"
+        num="01"
         label="O que fazemos"
         title="Tudo que envolve <span class='accent'>fio, força,</span> ar e imagem."
       >
@@ -441,7 +441,7 @@ const Diferenciais = () => {
   return (
     <section id="diferenciais">
       <SectionHead
-        num="// 02"
+        num="02"
         label="Por que a EM"
         title="<span class='accent'>Seguro, no prazo,</span> sem improviso."
       >
@@ -475,7 +475,7 @@ const Processo = () => {
   return (
     <section id="processo">
       <SectionHead
-        num="// 03"
+        num="03"
         label="Como trabalhamos"
         title="Um fluxo <span class='accent'>simples</span> do contato à entrega."
       />
@@ -513,7 +513,7 @@ const Obras = () => {
   return (
     <section id="obras">
       <SectionHead
-        num="// 04"
+        num="04"
         label="Obras realizadas"
         title="Obras <span class='accent'>de verdade,</span> entregues no prazo."
       >
@@ -574,7 +574,7 @@ const Depoimentos = () => {
   return (
     <section>
       <SectionHead
-        num="// 05"
+        num="05"
         label="O que dizem"
         title="<span class='accent'>Clientes</span> que voltam a chamar."
       />
@@ -615,7 +615,7 @@ const FAQ = () => {
   return (
     <section id="faq">
       <SectionHead
-        num="// 06"
+        num="06"
         label="Perguntas frequentes"
         title="Tirando as <span class='accent'>dúvidas</span> antes da obra."
       />
@@ -624,7 +624,7 @@ const FAQ = () => {
           {items.map((it, i) => (
             <div key={i} className={"faq-item" + (open === i ? " open" : "")}>
               <button className="faq-q" onClick={() => setOpen(open === i ? -1 : i)}>
-                <span className="faq-q-num">/{String(i+1).padStart(2,"0")}</span>
+                <span className="faq-q-num">{String(i+1).padStart(2,"0")}</span>
                 <span className="faq-q-text">{it.q}</span>
                 <span className="faq-q-icon"><Icon name="plus" size={14} /></span>
               </button>
@@ -659,7 +659,7 @@ const Contato = () => {
   return (
     <section id="contato">
       <SectionHead
-        num="// 07"
+        num="07"
         label="Fale com a EM"
         title="Pronto para <span class='accent'>energizar</span> sua obra?"
       >
@@ -694,7 +694,7 @@ const Contato = () => {
           </div>
 
           <form className="contact-form" onSubmit={submit}>
-            <div className="eyebrow">// Orçamento sem custo</div>
+            <div className="eyebrow">Orçamento sem custo</div>
             <h4>Pedir orçamento</h4>
             {sent ? (
               <div className="form-success">
@@ -792,14 +792,14 @@ const Footer = ({ navigate }) => (
       <h2 className="footer-big">EM<span className="accent">.</span></h2>
       <div className="footer-cols">
         <div className="footer-col">
-          <h6>// Sobre</h6>
+          <h6>Sobre</h6>
           <p style={{color: "var(--text-dim)", fontSize: 14, margin: 0, maxWidth: 360, lineHeight: 1.6}}>
             EM Instalações e Manutenções Elétricas. 20 anos executando obras elétricas
             com equipe técnica certificada NR-10. CNPJ 57.594.909/0001-32.
           </p>
         </div>
         <div className="footer-col">
-          <h6>// Serviços</h6>
+          <h6>Serviços</h6>
           <ul>
             <li><a href="#servicos">Residencial</a></li>
             <li><a href="#servicos">Comercial & industrial</a></li>
@@ -813,7 +813,7 @@ const Footer = ({ navigate }) => (
           </ul>
         </div>
         <div className="footer-col">
-          <h6>// Empresa</h6>
+          <h6>Empresa</h6>
           <ul>
             <li><a href="#sobre">A EM</a></li>
             <li><a href="#obras">Obras</a></li>
@@ -822,7 +822,7 @@ const Footer = ({ navigate }) => (
           </ul>
         </div>
         <div className="footer-col">
-          <h6>// Contato</h6>
+          <h6>Contato</h6>
           <ul>
             <li><a href="https://wa.me/5571991358822">WhatsApp</a></li>
             <li><a href="tel:71991358822">(71) 9 9135-8822</a></li>
@@ -859,8 +859,8 @@ const HomeServicesTeaser = ({ navigate }) => {
   return (
     <section>
       <SectionHead
-        num="// O que fazemos"
-        label="Serviços"
+        num=""
+        label="O que fazemos"
         title="Da <span class='accent'>tomada</span> à <span class='accent'>subestação.</span>"
       >
         Equipe própria e laudo técnico em toda obra. Cobrimos desde o reparo
@@ -920,7 +920,7 @@ const InlineCTA = ({ navigate }) => (
     <div className="container">
       <div className="inline-cta-inner">
         <div className="inline-cta-text">
-          <div className="eyebrow">// Próximo passo</div>
+          <div className="eyebrow">Próximo passo</div>
           <h3>Vamos calcular sua obra?</h3>
         </div>
         <div style={{display: "flex", gap: 12, flexWrap: "wrap"}}>
@@ -947,7 +947,7 @@ const WAFloat = () => (
 const Privacidade = () => (
   <section className="privacy-page">
     <div className="container">
-      <div className="eyebrow">// Legal</div>
+      <div className="eyebrow">Legal</div>
       <h1 className="page-hero-title">Política de <span className="accent">Privacidade</span></h1>
       <div className="privacy-body">
         <p className="privacy-updated">Vigente desde 16 de maio de 2026 · LGPD — Lei 13.709/2018</p>
@@ -1039,7 +1039,7 @@ const App = () => {
       case "servicos":
         return <><Servicos /><InlineCTA navigate={navigate} /></>;
       case "sobre":
-        return <><PageHero kicker="// A EM" title="<span class='accent'>Engenharia elétrica</span> com mão de obra própria." sub="20 anos executando obras elétricas com equipe NR-10. Sem terceirizar mão de obra crítica, sem improviso, com responsabilidade técnica documentada." /><Diferenciais /><Depoimentos /></>;
+        return <><PageHero kicker="A EM" title="<span class='accent'>Engenharia elétrica</span> com mão de obra própria." sub="20 anos executando obras elétricas com equipe NR-10. Sem terceirizar mão de obra crítica, sem improviso, com responsabilidade técnica documentada." /><Diferenciais /><Depoimentos /></>;
       case "processo":
         return <><Processo /><FAQ /></>;
       case "obras":
