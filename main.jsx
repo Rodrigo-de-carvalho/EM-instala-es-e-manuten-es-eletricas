@@ -32,6 +32,7 @@ const Icon = ({ name, size = 22, stroke = 1.6 }) => {
     cog: (<g><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M5 12H2M22 12h-3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1l2.1-2.1M17 7l2.1-2.1" /></g>),
     ac: (<g><rect x="1" y="4" width="22" height="9" rx="2" /><path d="M8 13v4M12 13v5M16 13v4" /><path d="M5 17h14" /></g>),
     cam: (<g><path d="M23 7l-7 5 7 5V7z" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></g>),
+    drop: <path d="M12 2C7 9 5 13 5 16a7 7 0 0 0 14 0c0-3-2-7-7-14z" />,
   };
   return <svg {...common}>{paths[name]}</svg>;
 };
@@ -287,6 +288,7 @@ const Ticker = () => {
     "★ Quadros de distribuição",
     "★ Ar-condicionado · Split · VRF",
     "★ Câmeras de segurança · CFTV",
+    "★ Hidráulica · Instalações e Reparos",
   ];
   return (
     <div className="ticker">
@@ -368,6 +370,25 @@ const Servicos = () => {
       n: "11", icon: "cam", title: "Câmeras de segurança",
       desc: "Instalação e configuração de sistemas CFTV, câmeras IP, DVR e NVR. Monitoramento residencial e comercial com acesso remoto pelo celular.",
       tags: ["CFTV", "Câmera IP", "DVR/NVR", "Monitoramento", "Remoto"], span: 6,
+    },
+    {
+      n: "12", icon: "drop", title: "Hidráulica",
+      desc: "Instalações e reparos hidráulicos residenciais e comerciais. Da obra nova ao pequeno reparo, com equipe própria e materiais de qualidade.",
+      list: [
+        "Instalação de torneiras e registros",
+        "Troca de acabamento (válvula, ducha, espelho)",
+        "Instalação de vaso sanitário e caixa acoplada",
+        "Instalação de pia, cuba e tanque",
+        "Bomba pressurizadora para banheiro",
+        "Instalação de aquecedor a gás",
+        "Reparo de vazamentos e infiltrações",
+        "Desentupimento de ralos e tubulações",
+        "Instalação de caixa d'água e reservatório",
+        "Troca de flexível e sifão",
+        "Rede hidráulica para obra nova",
+        "Manutenção preventiva hidráulica",
+      ],
+      tags: ["Residencial", "Comercial", "Reparos", "Obra nova"], span: 12,
     },
   ];
   return (
@@ -722,6 +743,12 @@ const Contato = () => {
                     <option>Ar-condicionado · Manutenção / limpeza</option>
                     <option>Câmeras de segurança · Instalação</option>
                     <option>Câmeras de segurança · Configuração</option>
+                    <option>Hidráulica · Instalação geral</option>
+                    <option>Hidráulica · Troca de torneiras e registros</option>
+                    <option>Hidráulica · Troca de acabamento</option>
+                    <option>Hidráulica · Bomba pressurizadora</option>
+                    <option>Hidráulica · Reparo de vazamento</option>
+                    <option>Hidráulica · Desentupimento</option>
                     <option>Outro</option>
                   </select>
                 </div>
@@ -782,6 +809,7 @@ const Footer = ({ navigate }) => (
             <li><a href="#servicos">Pequenos serviços</a></li>
             <li><a href="#servicos">Ar-condicionado</a></li>
             <li><a href="#servicos">Câmeras de segurança</a></li>
+            <li><a href="#servicos">Hidráulica</a></li>
           </ul>
         </div>
         <div className="footer-col">
@@ -826,6 +854,7 @@ const HomeServicesTeaser = ({ navigate }) => {
     { icon: "eye",     title: "Projetos elétricos",   d: "Projetos com memorial de cálculo." },
     { icon: "ac",      title: "Ar-condicionado",      d: "Instalação e manutenção de splits e VRF." },
     { icon: "cam",     title: "Câmeras de segurança", d: "CFTV, câmera IP, DVR/NVR e acesso remoto." },
+    { icon: "drop",    title: "Hidráulica",           d: "Instalações, reparos e manutenção hidráulica." },
   ];
   return (
     <section>
@@ -1044,9 +1073,8 @@ const App = () => {
             value={t.palette}
             onChange={v => setTweak("palette", v)}
             options={[
-              { value: "voltagem", label: "Volt" },
-              { value: "arco", label: "Arco" },
-              { value: "ambar", label: "Âmbar" },
+              { value: "voltagem", label: "Âmbar" },
+              { value: "arco", label: "Azul" },
             ]}
           />
         </TweakSection>

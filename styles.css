@@ -2,7 +2,7 @@
    EM · Sistema visual industrial-elétrico
    ===================================================== */
 :root {
-  /* Paleta padrão: Voltagem (amarelo elétrico) */
+  /* Paleta padrão: Âmbar (amarelo da logo) */
   --bg: #0a0a0a;
   --bg-2: #111110;
   --bg-3: #17170f;
@@ -12,25 +12,27 @@
   --text: #f4f3ec;
   --text-dim: #a3a39a;
   --text-faint: #5a5a52;
-  --accent: #e6ff3d;        /* amarelo voltagem */
+  --accent: #f5a320;        /* amarelo da logo */
   --accent-ink: #0a0a0a;    /* texto sobre accent */
   --warn: #ff4d2e;
-  --ok: #6ad36a;
+  --ok: #f5a320;
 }
 
 [data-palette="arco"] {
+  /* Paleta Azul (azul da logo) */
   --bg: #07090d;
   --bg-2: #0c1118;
   --bg-3: #0f1622;
   --surface: #101722;
-  --line: rgba(120, 180, 255, 0.08);
-  --line-strong: rgba(120, 180, 255, 0.18);
+  --line: rgba(58, 138, 232, 0.08);
+  --line-strong: rgba(58, 138, 232, 0.18);
   --text: #eaf2ff;
   --text-dim: #8aa0c2;
   --text-faint: #455772;
-  --accent: #5cb3ff;
-  --accent-ink: #03060c;
+  --accent: #3a8ae8;        /* azul da logo clareado para fundo escuro */
+  --accent-ink: #ffffff;
   --warn: #ff7a3d;
+  --ok: #3a8ae8;
 }
 
 [data-palette="ambar"] {
@@ -43,9 +45,10 @@
   --text: #fdf6ea;
   --text-dim: #b5a489;
   --text-faint: #6b5d49;
-  --accent: #ffb528;
+  --accent: #f5a320;
   --accent-ink: #100b06;
   --warn: #ff5a2e;
+  --ok: #f5a320;
 }
 
 * { box-sizing: border-box; }
@@ -387,13 +390,13 @@ section {
   width: 8px; height: 8px;
   background: var(--ok);
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(106, 211, 106, 0.6);
+  box-shadow: 0 0 0 0 rgba(245, 163, 32, 0.6);
   animation: pulse 1.6s ease-out infinite;
 }
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(106, 211, 106, 0.6); }
-  70% { box-shadow: 0 0 0 10px rgba(106, 211, 106, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(106, 211, 106, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(245, 163, 32, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(245, 163, 32, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 163, 32, 0); }
 }
 
 .hero-title {
