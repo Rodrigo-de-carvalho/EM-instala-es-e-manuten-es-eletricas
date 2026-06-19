@@ -11,7 +11,7 @@
   --line-strong: rgba(255, 255, 255, 0.14);
   --text: #f4f3ec;
   --text-dim: #a3a39a;
-  --text-faint: #5a5a52;
+  --text-faint: #767a6c;
   --accent: #F8B500;        /* amarelo da logo */
   --accent-ink: #0a0a0a;    /* texto sobre accent */
   --warn: #F8B500;
@@ -28,7 +28,7 @@
   --line-strong: rgba(58, 138, 232, 0.18);
   --text: #eaf2ff;
   --text-dim: #8aa0c2;
-  --text-faint: #455772;
+  --text-faint: #607a9c;
   --accent: #3a8ae8;        /* azul da logo clareado para fundo escuro */
   --accent-ink: #ffffff;
   --warn: #F8B500;
@@ -44,7 +44,7 @@
   --line-strong: rgba(255, 200, 120, 0.16);
   --text: #fdf6ea;
   --text-dim: #b5a489;
-  --text-faint: #6b5d49;
+  --text-faint: #8a7a60;
   --accent: #F8B500;
   --accent-ink: #100b06;
   --warn: #F8B500;
@@ -1735,4 +1735,54 @@ main > section:first-child .section-head { border-top: none; }
   font-family: inherit;
   cursor: pointer;
   text-decoration: underline;
+}
+
+/* ====== Skip link (acessibilidade) ====== */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 1000;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: top .2s ease;
+}
+.skip-link:focus {
+  top: 16px;
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* ====== Ações do formulário ====== */
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+.form-actions .btn { flex: 1 1 200px; justify-content: center; }
+
+/* ====== Fallback de erro (ErrorBoundary) ====== */
+.error-fallback {
+  text-align: center;
+  padding: 80px 32px;
+}
+.error-fallback h2 { margin: 0 0 12px; }
+.error-fallback p { color: var(--text-dim); margin: 0 0 24px; }
+.error-fallback .btn { display: inline-flex; gap: 8px; align-items: center; }
+
+/* ====== Respeitar redução de movimento do sistema operacional ====== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .ticker-track, .wa-float::after, .page-fade { animation: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
 }

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Troque pelo domínio real quando publicar
+Sitemap: https://www.eminstalacoeseletricas.com.br/sitemap.xml

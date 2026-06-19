@@ -7,6 +7,7 @@ const Icon = ({ name, size = 22, stroke = 1.6 }) => {
     width: size, height: size, viewBox: "0 0 24 24",
     fill: "none", stroke: "currentColor", strokeWidth: stroke,
     strokeLinecap: "round", strokeLinejoin: "round",
+    "aria-hidden": "true", focusable: "false",
   };
   const paths = {
     bolt: <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />,
@@ -171,6 +172,13 @@ const Nav = ({ page, navigate }) => {
   const [open, setOpen] = React.useState(false);
   const go = (id) => { setOpen(false); navigate(id); };
 
+  React.useEffect(() => {
+    if (!open) return undefined;
+    const onKey = (e) => { if (e.key === "Escape") setOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <nav className="nav">
       <div className="container nav-inner">
@@ -201,14 +209,16 @@ const Nav = ({ page, navigate }) => {
         <button
           className={"nav-hamburger" + (open ? " is-open" : "")}
           onClick={() => setOpen(v => !v)}
-          aria-label="Menu"
+          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={open}
+          aria-controls="nav-drawer"
         >
           <span /><span /><span />
         </button>
       </div>
 
       {open && (
-        <div className="nav-drawer">
+        <div className="nav-drawer" id="nav-drawer">
           {PAGES.filter(p => p.id !== "home" && p.id !== "privacidade").map(p => (
             <button
               key={p.id}
@@ -263,7 +273,7 @@ const Hero = ({ navigate }) => (
         <button className="btn" onClick={() => navigate("contato")}>
           Pedir orçamento <Icon name="arrow" size={16} />
         </button>
-        <a href="https://wa.me/5571991358822" className="btn ghost">
+        <a href="https://wa.me/5571991358822?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." className="btn ghost">
           <Icon name="wa" size={16} /> WhatsApp direto
         </a>
       </div>
@@ -546,7 +556,7 @@ const Obras = () => {
 const Stats = () => {
   const items = [
     { v: "1.2", u: "k+", l: "Obras entregues" },
-    { v: "12", u: "anos", l: "No mercado" },
+    { v: "20", u: "anos", l: "No mercado" },
     { v: "98", u: "%", l: "Reagendamento zero" },
     { v: "4.9", u: "★", l: "Avaliação Google" },
   ];
@@ -623,7 +633,7 @@ const FAQ = () => {
         <div className="faq">
           {items.map((it, i) => (
             <div key={i} className={"faq-item" + (open === i ? " open" : "")}>
-              <button className="faq-q" onClick={() => setOpen(open === i ? -1 : i)}>
+              <button className="faq-q" aria-expanded={open === i} onClick={() => setOpen(open === i ? -1 : i)}>
                 <span className="faq-q-num">{String(i+1).padStart(2,"0")}</span>
                 <span className="faq-q-text">{it.q}</span>
                 <span className="faq-q-icon"><Icon name="plus" size={14} /></span>
@@ -656,6 +666,24 @@ const Contato = () => {
     setSent(true);
   };
 
+  // Envio alternativo pelo WhatsApp (mais confiável que mailto no celular)
+  const sendWhats = () => {
+    if (!form.nome || !form.tel) {
+      alert("Preencha ao menos nome e telefone antes de enviar pelo WhatsApp.");
+      return;
+    }
+    if (!form.aceito) {
+      alert("É preciso aceitar a Política de Privacidade para continuar.");
+      return;
+    }
+    const text = encodeURIComponent(
+      `Olá! Vim pelo site e gostaria de um orçamento.\n\n` +
+      `Nome: ${form.nome}\nTelefone/WhatsApp: ${form.tel}\nE-mail: ${form.email}\n` +
+      `Tipo de serviço: ${form.tipo}\n\n${form.msg}`
+    );
+    window.open(`https://wa.me/5571991358822?text=${text}`, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <section id="contato">
       <SectionHead
@@ -674,7 +702,7 @@ const Contato = () => {
               <div className="contact-channel-icon"><Icon name="wa" size={18} /></div>
               <div>
                 <div className="contact-channel-label">WhatsApp · Seg a Sáb 7h–17h</div>
-                <a href="https://wa.me/5571991358822" className="contact-channel-value" style={{color:"inherit",textDecoration:"none"}}>(71) 9 9135-8822</a>
+                <a href="https://wa.me/5571991358822?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." className="contact-channel-value" style={{color:"inherit",textDecoration:"none"}}>(71) 9 9135-8822</a>
               </div>
             </div>
             <div className="contact-channel">
@@ -704,22 +732,22 @@ const Contato = () => {
             ) : (
               <>
                 <div className="field">
-                  <label>Nome</label>
-                  <input type="text" required placeholder="Seu nome completo" value={form.nome} onChange={handle("nome")} />
+                  <label htmlFor="f-nome">Nome</label>
+                  <input id="f-nome" name="nome" type="text" required autoComplete="name" placeholder="Seu nome completo" value={form.nome} onChange={handle("nome")} />
                 </div>
                 <div className="field-row">
                   <div className="field">
-                    <label>Telefone / WhatsApp</label>
-                    <input type="tel" required placeholder="(00) 0 0000-0000" value={form.tel} onChange={handle("tel")} />
+                    <label htmlFor="f-tel">Telefone / WhatsApp</label>
+                    <input id="f-tel" name="tel" type="tel" required autoComplete="tel" placeholder="(00) 0 0000-0000" value={form.tel} onChange={handle("tel")} />
                   </div>
                   <div className="field">
-                    <label>E-mail</label>
-                    <input type="email" placeholder="voce@email.com" value={form.email} onChange={handle("email")} />
+                    <label htmlFor="f-email">E-mail</label>
+                    <input id="f-email" name="email" type="email" autoComplete="email" placeholder="voce@email.com" value={form.email} onChange={handle("email")} />
                   </div>
                 </div>
                 <div className="field">
-                  <label>Tipo de serviço</label>
-                  <select value={form.tipo} onChange={handle("tipo")}>
+                  <label htmlFor="f-tipo">Tipo de serviço</label>
+                  <select id="f-tipo" name="tipo" value={form.tipo} onChange={handle("tipo")}>
                     <option value="" disabled>Selecione o tipo de serviço…</option>
                     <option>Instalação residencial</option>
                     <option>Instalação comercial</option>
@@ -753,8 +781,8 @@ const Contato = () => {
                   </select>
                 </div>
                 <div className="field">
-                  <label>Descreva sua necessidade</label>
-                  <textarea placeholder="Conte o que precisa, prazo desejado, endereço aproximado…" value={form.msg} onChange={handle("msg")}></textarea>
+                  <label htmlFor="f-msg">Descreva sua necessidade</label>
+                  <textarea id="f-msg" name="msg" placeholder="Conte o que precisa, prazo desejado, endereço aproximado…" value={form.msg} onChange={handle("msg")}></textarea>
                 </div>
                 <div className="field field-check">
                   <label className="check-label">
@@ -773,9 +801,14 @@ const Contato = () => {
                     </span>
                   </label>
                 </div>
-                <button type="submit" className="btn" style={{marginTop: 16}}>
-                  Enviar pedido <Icon name="arrow" size={16} />
-                </button>
+                <div className="form-actions">
+                  <button type="submit" className="btn">
+                    Enviar por e-mail <Icon name="arrow" size={16} />
+                  </button>
+                  <button type="button" className="btn ghost" onClick={sendWhats}>
+                    <Icon name="wa" size={16} /> Enviar pelo WhatsApp
+                  </button>
+                </div>
               </>
             )}
           </form>
@@ -824,7 +857,7 @@ const Footer = ({ navigate }) => (
         <div className="footer-col">
           <h6>Contato</h6>
           <ul>
-            <li><a href="https://wa.me/5571991358822">WhatsApp</a></li>
+            <li><a href="https://wa.me/5571991358822?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento.">WhatsApp</a></li>
             <li><a href="tel:71991358822">(71) 9 9135-8822</a></li>
             <li><a href="mailto:edsonmoura1003@gmail.com">E-mail</a></li>
             <li><a href="#contato">Orçamento</a></li>
@@ -906,7 +939,7 @@ const HomeCTA = ({ navigate }) => (
           <button className="home-cta-btn-primary" onClick={() => navigate("contato")}>
             Pedir orçamento <Icon name="arrow" size={16} />
           </button>
-          <a href="https://wa.me/5571991358822" className="home-cta-btn-wa">
+          <a href="https://wa.me/5571991358822?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." className="home-cta-btn-wa">
             <Icon name="wa" size={18} /> (71) 9 9135-8822
           </a>
         </div>
@@ -927,7 +960,7 @@ const InlineCTA = ({ navigate }) => (
           <button className="btn" onClick={() => navigate("contato")}>
             Pedir orçamento <Icon name="arrow" size={16} />
           </button>
-          <a href="https://wa.me/5571991358822" className="btn ghost">
+          <a href="https://wa.me/5571991358822?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." className="btn ghost">
             <Icon name="wa" size={16} /> WhatsApp
           </a>
         </div>
@@ -938,7 +971,7 @@ const InlineCTA = ({ navigate }) => (
 
 // ---------------------------- WA FLOAT
 const WAFloat = () => (
-  <a href="https://wa.me/5571991358822" className="wa-float" aria-label="WhatsApp">
+  <a href="https://wa.me/5571991358822?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." className="wa-float" aria-label="Falar no WhatsApp" target="_blank" rel="noopener noreferrer">
     <Icon name="wa" size={26} stroke={1.8} />
   </a>
 );
@@ -1024,6 +1057,33 @@ Object.assign(window, { Nav, Hero, Ticker, Servicos, Diferenciais, Processo, Obr
    App root + Tweaks panel
    ============================================================ */
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error, info) {
+    console.error("Erro de renderização:", error, info);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="error-fallback container">
+          <h2>Algo deu errado ao carregar esta seção.</h2>
+          <p>Tente recarregar a página ou fale com a gente direto no WhatsApp.</p>
+          <a className="btn" href="https://wa.me/5571991358822?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento.">
+            <Icon name="wa" size={16} /> Falar no WhatsApp
+          </a>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 const App = () => {
   const [t, setTweak] = useTweaks(window.TWEAKS_DEFAULTS);
   const [page, navigate] = usePage();
@@ -1057,10 +1117,11 @@ const App = () => {
 
   return (
     <>
+      <a href="#conteudo" className="skip-link">Pular para o conteúdo</a>
       <div className="grid-bg"></div>
       <Nav page={page} navigate={navigate} />
-      <main key={page} className="page-fade">
-        {renderPage()}
+      <main id="conteudo" key={page} className="page-fade">
+        <ErrorBoundary>{renderPage()}</ErrorBoundary>
       </main>
       <Footer navigate={navigate} />
       <WAFloat />
