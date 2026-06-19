@@ -95,6 +95,37 @@ const CircuitLines = () => (
   </div>
 );
 
+// ----- Count-up number when scrolled into view -----
+const CountUp = ({ value, duration = 1300 }) => {
+  const target = parseFloat(value);
+  const isNum = !isNaN(target);
+  const reduce = typeof window !== "undefined" &&
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const [n, setN] = React.useState(isNum && !reduce ? 0 : target);
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    if (!isNum || reduce) return undefined;
+    const el = ref.current;
+    if (!el) return undefined;
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        setN(Math.round(target * eased));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }, { threshold: 0.4 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  if (!isNum) return <span ref={ref}>{value}</span>;
+  return <span ref={ref}>{n}</span>;
+};
+
 // ----- Reveal-on-scroll wrapper -----
 // IMPORTANT: clones its single child to keep grid-item targeting working —
 // .services > .reveal would not match .span-6 etc.
@@ -276,6 +307,11 @@ const Hero = ({ navigate }) => (
         <a href="https://wa.me/5571991358822?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." className="btn ghost">
           <Icon name="wa" size={16} /> WhatsApp direto
         </a>
+      </div>
+      <div className="hero-badges">
+        {["CREA", "NR-10", "ART", "20 anos", "Equipe própria"].map(b => (
+          <span className="hero-badge" key={b}><Icon name="check" size={13} /> {b}</span>
+        ))}
       </div>
     </div>
     <VoltageGauge />
@@ -463,7 +499,7 @@ const Diferenciais = () => {
           {items.map((d, i) => (
             <Reveal key={i} delay={i * 80}>
               <div className="diff">
-                <div className="diff-num">{d.n}<small>{d.unit}</small></div>
+                <div className="diff-num"><CountUp value={d.n} /><small>{d.unit}</small></div>
                 <div className="diff-title">{d.title}</div>
                 <div className="diff-desc">{d.desc}</div>
               </div>
