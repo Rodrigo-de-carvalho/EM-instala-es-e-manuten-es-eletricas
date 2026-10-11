@@ -311,6 +311,7 @@ const Servicos = () => {
       n: "02", icon: "factory", title: "Comercial, industrial & saúde",
       desc: "Lojas, supermercados, escritórios, condomínios, galpões, fábricas, clínicas e hospitais. Instalações completas, motores, comandos elétricos, painéis e adequações técnicas em qualquer porte.",
       tags: ["Clínicas", "Hospitais", "Galpões", "Motores", "Painéis"], span: 6,
+      img: "eletrocalha-corte", imgPos: "50% 62%", imgAlt: "Eletricista cortando eletrocalha perfurada em obra comercial",
     },
     {
       n: "03", icon: "panel", title: "Quadros de distribuição",
@@ -370,6 +371,7 @@ const Servicos = () => {
       n: "11", icon: "cam", title: "Câmeras de segurança",
       desc: "Instalação e configuração de sistemas CFTV, câmeras IP, DVR e NVR. Monitoramento residencial e comercial com acesso remoto pelo celular.",
       tags: ["CFTV", "Câmera IP", "DVR/NVR", "Monitoramento", "Remoto"], span: 6,
+      img: "rack-rede", imgPos: "50% 18%", imgAlt: "Rack de rede com eletrodutos galvanizados instalado em laje",
     },
     {
       n: "12", icon: "drop", title: "Hidráulica",
@@ -406,6 +408,11 @@ const Servicos = () => {
           {list.map((s) => (
             <Reveal key={s.n} delay={(parseInt(s.n) - 1) * 60}>
               <div className={`service span-${s.span} ${s.featured ? "featured" : ""}`}>
+                {s.img && (
+                  <div className="svc-photo">
+                    <img src={`img/obras/${s.img}.jpg`} alt={s.imgAlt} loading="lazy" style={{objectPosition: s.imgPos}} />
+                  </div>
+                )}
                 <div className="svc-top">
                   <div className="svc-num">{s.n} / {String(list.length).padStart(2,"0")}</div>
                   <div className="svc-icon"><Icon name={s.icon} size={32} stroke={1.4} /></div>
@@ -504,11 +511,13 @@ const Processo = () => {
 // ---------------------------- PORTFOLIO
 const Obras = () => {
   const projs = [
-    { title: "Galpão Industrial · 1200m²", meta: "Cargas trifásicas · QGBT", tag: "Industrial", size: "tall" },
-    { title: "Residência alto padrão", meta: "Projeto + automação", tag: "Residencial", size: "wide" },
-    { title: "Loja de varejo · Shopping", meta: "Padrão + iluminação", tag: "Comercial", size: "md" },
-    { title: "SPDA prédio comercial", meta: "Para-raios + malha", tag: "SPDA", size: "md" },
-    { title: "Subestação 75kVA", meta: "Aérea, com transformador", tag: "Energia", size: "wide" },
+    { title: "Eletroduto aparente em arena", meta: "Galvanizado · alimentação de painel", tag: "Comercial", size: "tall", img: "eletroduto-arena", pos: "50% 45%" },
+    { title: "Rack de rede e CFTV", meta: "Eletrodutos galvanizados", tag: "Rede · CFTV", size: "md", img: "rack-rede", pos: "50% 18%" },
+    { title: "Eletrocalha perfurada", meta: "Corte e montagem em obra", tag: "Infraestrutura", size: "md", img: "eletrocalha-corte", pos: "50% 60%" },
+    { title: "Infraestrutura de iluminação", meta: "Eletroduto e caixas no forro", tag: "Comercial", size: "md", img: "forro-iluminacao", pos: "50% 40%" },
+    { title: "Trabalho em altura", meta: "Andaime e cinto de segurança", tag: "Segurança", size: "md", img: "trabalho-altura", pos: "50% 40%" },
+    { title: "Distribuição para rack", meta: "Eletroduto aparente em laje", tag: "Infraestrutura", size: "wide", img: "rack-eletrodutos", pos: "50% 33%" },
+    { title: "Instalações em drywall", meta: "Eletroduto flexível em parede", tag: "Comercial", size: "wide", img: "drywall-infra", pos: "50% 55%" },
   ];
   return (
     <section id="obras">
@@ -517,15 +526,15 @@ const Obras = () => {
         label="Obras realizadas"
         title="Obras <span class='accent'>de verdade,</span> entregues no prazo."
       >
-        Obras residenciais, comerciais e industriais executadas com equipe própria
-        e certificada. Abaixo, alguns trabalhos realizados.
+        Registros reais de obra: infraestrutura elétrica, eletrodutos, eletrocalhas,
+        racks e instalações em ambientes comerciais.
       </SectionHead>
       <div className="container">
         <div className="portfolio">
           {projs.map((p, i) => (
             <Reveal key={i} delay={i * 60}>
               <div className={`proj size-${p.size}`}>
-                <div className="proj-bg">[ FOTO · obra {String(i+1).padStart(2,"0")} ]</div>
+                <img className="proj-img" src={`img/obras/${p.img}.jpg`} alt={`${p.title} — ${p.meta}`} loading="lazy" style={{objectPosition: p.pos}} />
                 <div className="proj-info">
                   <div>
                     <div className="proj-title">{p.title}</div>
