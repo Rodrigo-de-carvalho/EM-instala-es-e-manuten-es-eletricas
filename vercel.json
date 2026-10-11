@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "em-instala-es-e-manuten-es-eletrica.vercel.app" }],
+      "destination": "https://eminstalacoes.vercel.app/:path*",
+      "permanent": true
+    }
+  ]
+}
