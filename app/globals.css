@@ -11,7 +11,7 @@
   --line-strong: rgba(255, 255, 255, 0.14);
   --text: #f4f3ec;
   --text-dim: #a3a39a;
-  --text-faint: #767a6c;
+  --text-faint: #82867a; /* 5,3:1 sobre o fundo (mínimo WCAG AA: 4,5) */
   --accent: #F8B500;        /* amarelo da logo */
   --accent-ink: #0a0a0a;    /* texto sobre accent */
   --warn: #F8B500;
@@ -58,7 +58,7 @@ html, body {
   padding: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--f-inter), system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -89,24 +89,24 @@ button { font-family: inherit; }
 
 /* ====== Typography utilities ====== */
 .display {
-  font-family: 'Archivo Black', 'Archivo', sans-serif;
+  font-family: var(--f-display), var(--f-archivo), sans-serif;
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 0.88;
   text-transform: uppercase;
 }
 .heading {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.05;
 }
 .mono {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: var(--f-mono), ui-monospace, monospace;
   letter-spacing: 0;
 }
 .eyebrow {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -149,7 +149,7 @@ section {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--f-display), sans-serif;
   font-size: 20px;
   letter-spacing: -0.02em;
 }
@@ -160,7 +160,7 @@ section {
   color: var(--accent-ink);
   display: grid;
   place-items: center;
-  font-family: 'Archivo Black';
+  font-family: var(--f-display);
   font-size: 15px;
   letter-spacing: -0.04em;
   position: relative;
@@ -180,7 +180,7 @@ section {
   border-radius: 6px;
 }
 .nav-logo small {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 10px;
   letter-spacing: 0.16em;
   color: var(--text-dim);
@@ -190,7 +190,7 @@ section {
 .nav-links {
   display: flex;
   gap: 8px;
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 500;
   font-size: 14px;
 }
@@ -231,7 +231,7 @@ section {
   background: var(--accent);
   color: var(--accent-ink);
   padding: 10px 18px;
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.02em;
@@ -296,7 +296,7 @@ section {
   border: none;
   border-bottom: 1px solid var(--line);
   color: var(--text-dim);
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 600;
   font-size: 16px;
   padding: 18px 24px;
@@ -321,7 +321,7 @@ section {
   background: var(--accent);
   color: var(--accent-ink);
   padding: 16px 20px;
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.03em;
@@ -338,7 +338,7 @@ section {
   align-items: center;
   gap: 10px;
   padding: 16px 22px;
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.04em;
@@ -379,7 +379,7 @@ section {
   gap: 10px;
   padding: 8px 14px;
   border: 1px solid var(--line-strong);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -429,7 +429,7 @@ section {
   display: flex;
   gap: 8px;
   margin-left: 12px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -452,7 +452,7 @@ section {
   border: 1px solid var(--line-strong);
   padding: 18px;
   background: linear-gradient(180deg, var(--bg-2), transparent);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
 }
 .hero-gauge .gauge-head {
   display: flex;
@@ -464,7 +464,7 @@ section {
   margin-bottom: 14px;
 }
 .hero-gauge .gauge-val {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--f-display), sans-serif;
   font-size: 44px;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -520,7 +520,7 @@ section {
   color: var(--accent);
   overflow: hidden;
   white-space: nowrap;
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--f-display), sans-serif;
   font-size: 22px;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -566,7 +566,7 @@ section {
   .section-head { grid-template-columns: 1fr; gap: 18px; padding-top: 64px; padding-bottom: 32px; }
 }
 .section-head .sh-num {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.18em;
   color: var(--accent);
@@ -574,7 +574,7 @@ section {
   margin-bottom: 8px;
 }
 .section-head .sh-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   color: var(--text-faint);
   text-transform: uppercase;
@@ -583,7 +583,7 @@ section {
 .section-head h2,
 .section-head .sh-title {
   margin: 0;
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--f-display), sans-serif;
   font-weight: 900;
   letter-spacing: -0.04em;
   font-size: clamp(40px, 5.6vw, 80px);
@@ -658,7 +658,7 @@ section {
   margin-bottom: 24px;
 }
 .svc-num {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   color: var(--text-faint);
   letter-spacing: 0.14em;
@@ -668,7 +668,7 @@ section {
   transition: color .25s, transform .25s;
 }
 .svc-title {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 800;
   letter-spacing: -0.02em;
   font-size: 26px;
@@ -692,7 +692,7 @@ section {
 @media (max-width: 900px) { .svc-list { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px)  { .svc-list { grid-template-columns: 1fr; } }
 .svc-list li {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--f-inter), sans-serif;
   font-size: 13px;
   color: var(--text-dim);
   line-height: 1.5;
@@ -705,7 +705,7 @@ section {
   position: absolute;
   left: 0;
   color: var(--accent);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 10px;
   top: 9px;
 }
@@ -719,7 +719,7 @@ section {
   margin-top: 18px;
 }
 .svc-tag {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -762,14 +762,14 @@ section {
 }
 @media (max-width: 540px) { .diff { min-height: 0; } }
 .diff-num {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--f-display), sans-serif;
   font-size: 64px;
   letter-spacing: -0.06em;
   line-height: 0.85;
   color: var(--accent);
 }
 .diff-num small {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.12em;
   color: var(--text-faint);
@@ -778,7 +778,7 @@ section {
   text-transform: uppercase;
 }
 .diff-title {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 700;
   font-size: 18px;
   letter-spacing: -0.01em;
@@ -819,7 +819,7 @@ section {
   margin-bottom: 28px;
 }
 .step-num {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--f-display), sans-serif;
   font-size: 22px;
   color: var(--accent);
   letter-spacing: -0.02em;
@@ -833,7 +833,7 @@ section {
   color: var(--accent);
 }
 .step-title {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 800;
   font-size: 22px;
   letter-spacing: -0.02em;
@@ -886,13 +886,13 @@ section {
   align-items: flex-end;
 }
 .proj-title {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 700;
   font-size: 17px;
   letter-spacing: -0.01em;
 }
 .proj-meta {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 10px;
   letter-spacing: 0.14em;
   color: var(--text-dim);
@@ -900,7 +900,7 @@ section {
   text-transform: uppercase;
 }
 .proj-tag {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -939,7 +939,7 @@ section {
   padding: 36px 28px;
 }
 .stat-val {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--f-display), sans-serif;
   font-size: clamp(48px, 6vw, 96px);
   letter-spacing: -0.05em;
   line-height: 0.9;
@@ -950,7 +950,7 @@ section {
   margin-left: 4px;
 }
 .stat-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -977,7 +977,7 @@ section {
   gap: 18px;
 }
 .testi-quote {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 500;
   font-size: 19px;
   line-height: 1.4;
@@ -986,7 +986,7 @@ section {
 .testi-quote::before {
   content: "\201C";
   display: block;
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--f-display), sans-serif;
   font-size: 56px;
   line-height: 0.5;
   color: var(--accent);
@@ -1001,12 +1001,12 @@ section {
   padding-top: 16px;
 }
 .testi-who {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 700;
   font-size: 14px;
 }
 .testi-where {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1041,7 +1041,7 @@ section {
 }
 .faq-q:hover .faq-q-text { color: var(--accent); }
 .faq-q-num {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 12px;
   color: var(--text-faint);
   letter-spacing: 0.1em;
@@ -1050,7 +1050,7 @@ section {
 }
 .faq-q-text {
   flex: 1;
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 700;
   font-size: 19px;
   letter-spacing: -0.01em;
@@ -1114,7 +1114,7 @@ section {
   .contact-info { padding: 32px 24px; gap: 20px; }
 }
 .contact-info .contact-info-title {
-  font-family: 'Archivo Black';
+  font-family: var(--f-display);
   font-size: clamp(36px, 4vw, 56px);
   letter-spacing: -0.04em;
   line-height: 0.92;
@@ -1139,14 +1139,14 @@ section {
   color: var(--accent);
 }
 .contact-channel-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-dim);
 }
 .contact-channel-value {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 700;
   font-size: 20px;
   letter-spacing: -0.01em;
@@ -1168,7 +1168,7 @@ section {
 }
 .contact-form .eyebrow { color: var(--text-dim); margin-bottom: 4px; }
 .contact-form .contact-form-title {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--f-display), sans-serif;
   font-size: 30px;
   letter-spacing: -0.02em;
   margin: 0 0 14px;
@@ -1180,7 +1180,7 @@ section {
   gap: 6px;
 }
 .field label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 10px;
   letter-spacing: 0.16em;
   color: var(--text-dim);
@@ -1191,7 +1191,7 @@ section {
   border: none;
   border-bottom: 1px solid var(--line-strong);
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--f-inter), sans-serif;
   font-size: 15px;
   padding: 10px 0;
   transition: border-color .2s;
@@ -1225,7 +1225,7 @@ section {
   border: 1px solid var(--accent);
   background: rgba(248,181,0,0.06);
   color: var(--accent);
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 600;
   font-size: 15px;
   display: flex;
@@ -1240,7 +1240,7 @@ section {
   position: relative;
 }
 .footer-big {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--f-display), sans-serif;
   font-size: clamp(60px, 14vw, 220px);
   line-height: 0.85;
   letter-spacing: -0.05em;
@@ -1259,7 +1259,7 @@ section {
 @media (max-width: 800px) { .footer-cols { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 480px) { .footer-cols { grid-template-columns: 1fr; } }
 .footer-col .footer-h {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1276,7 +1276,7 @@ section {
   border-top: 1px solid var(--line);
   display: flex;
   justify-content: space-between;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.12em;
   color: var(--text-faint);
@@ -1357,14 +1357,6 @@ section {
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 /* ====== Page transitions ====== */
-.page-fade {
-  animation: pageIn .4s ease;
-}
-@keyframes pageIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: none; }
-}
-[data-reduce-motion="true"] .page-fade { animation: none; }
 
 /* ====== Page hero (non-home) ====== */
 .page-hero {
@@ -1376,7 +1368,7 @@ section {
   margin-bottom: 18px;
 }
 .page-hero-title {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--f-display), sans-serif;
   font-weight: 900;
   letter-spacing: -0.045em;
   line-height: 0.9;
@@ -1426,7 +1418,7 @@ section {
   transition: color .2s;
 }
 .ht-title {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 800;
   font-size: 22px;
   letter-spacing: -0.02em;
@@ -1442,7 +1434,7 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1472,7 +1464,7 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1497,7 +1489,7 @@ section {
   color: var(--accent);
 }
 .home-cta-sub {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 500;
   font-size: clamp(14px, 1.6vw, 18px);
   line-height: 1.6;
@@ -1517,7 +1509,7 @@ section {
   padding: 15px 22px;
   background: var(--accent);
   color: var(--accent-ink);
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.04em;
@@ -1538,7 +1530,7 @@ section {
   padding: 15px 22px;
   background: transparent;
   color: var(--text);
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.04em;
@@ -1591,7 +1583,7 @@ section {
 }
 .inline-cta-text .eyebrow { color: var(--accent); }
 .inline-cta-text .inline-cta-title {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var(--f-display), sans-serif;
   letter-spacing: -0.03em;
   font-size: clamp(28px, 4vw, 44px);
   margin: 8px 0 0;
@@ -1671,7 +1663,7 @@ main > section:first-child .section-head { border-top: none; }
   color: var(--accent-ink);
   border: none;
   padding: 8px 20px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -1693,7 +1685,7 @@ main > section:first-child .section-head { border-top: none; }
   .privacy-page { padding: 48px 0 56px; }
 }
 .privacy-updated {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   color: var(--text-dim);
   letter-spacing: 0.1em;
@@ -1705,7 +1697,7 @@ main > section:first-child .section-head { border-top: none; }
 .privacy-body { max-width: 720px; }
 .privacy-body h2,
 .privacy-body h3 {
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--f-archivo), sans-serif;
   font-weight: 800;
   font-size: 14px;
   text-transform: uppercase;
@@ -1794,7 +1786,7 @@ main > section:first-child .section-head { border-top: none; }
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .ticker-track, .wa-float::after, .page-fade { animation: none !important; }
+  .ticker-track, .wa-float::after { animation: none !important; }
   .reveal { opacity: 1 !important; transform: none !important; }
 }
 
@@ -1812,7 +1804,7 @@ main > section:first-child .section-head { border-top: none; }
   padding: 7px 12px;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--f-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1881,7 +1873,7 @@ figure.proj { margin: 0; }
 .service:has(.svc-link:focus-visible) { outline: 2px solid var(--accent); outline-offset: -2px; }
 .svc-more {
   display: inline-flex; align-items: center; gap: 6px; margin-top: 18px;
-  font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em;
+  font-family: var(--f-mono), monospace; font-size: 11px; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--accent);
 }
 .service.featured .svc-more { color: var(--accent-ink); }
@@ -1901,14 +1893,14 @@ figure.proj { margin: 0; }
 }
 .crumbs {
   display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; padding: 0; list-style: none;
-  font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em;
+  font-family: var(--f-mono), monospace; font-size: 11px; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--text-faint);
 }
 .crumbs a { color: var(--text-dim); text-decoration: none; }
 .crumbs a:hover { color: var(--accent); }
 .crumbs li + li::before { content: "/"; margin-right: 8px; color: var(--text-faint); }
 .svc-hero h1 {
-  font-family: 'Archivo Black', sans-serif; text-transform: uppercase;
+  font-family: var(--f-display), sans-serif; text-transform: uppercase;
   font-size: clamp(34px, 4.6vw, 64px); line-height: 0.95; letter-spacing: -0.04em;
   margin: 14px 0 20px; text-wrap: balance;
 }
@@ -1926,14 +1918,14 @@ figure.proj { margin: 0; }
 .svc-hero-panel .svc-icon { color: var(--accent); }
 .svc-hero-panel dl { margin: 0; display: grid; gap: 14px; }
 .svc-hero-panel dt {
-  font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em;
+  font-family: var(--f-mono), monospace; font-size: 10px; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--text-faint);
 }
 .svc-hero-panel dd { margin: 4px 0 0; font-size: 15px; color: var(--text); }
 
 .svc-includes-wrap { padding-block: 72px; }
 .svc-includes-wrap h2 {
-  font-family: 'Archivo Black', sans-serif; text-transform: uppercase;
+  font-family: var(--f-display), sans-serif; text-transform: uppercase;
   font-size: clamp(26px, 3vw, 40px); letter-spacing: -0.03em; margin: 0 0 28px;
 }
 /* Bordas nos itens (e não no fundo da grade) para a última linha incompleta
@@ -1952,7 +1944,7 @@ figure.proj { margin: 0; }
 
 .svc-related { padding-block: 24px 72px; }
 .svc-related h2 {
-  font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.16em;
+  font-family: var(--f-mono), monospace; font-size: 12px; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--text-faint); font-weight: 500; margin: 0 0 18px;
 }
 .svc-related .home-teaser { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -1985,11 +1977,11 @@ figure.proj { margin: 0; }
 .dica-card:hover { background: var(--bg-2); }
 .dica-card:hover .dica-title { color: var(--accent); }
 .dica-meta {
-  font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em;
+  font-family: var(--f-mono), monospace; font-size: 11px; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--text-faint);
 }
 .dica-title {
-  font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 21px; line-height: 1.2;
+  font-family: var(--f-archivo), sans-serif; font-weight: 800; font-size: 21px; line-height: 1.2;
   letter-spacing: -0.01em; margin: 0; text-wrap: balance; transition: color .2s;
 }
 .dica-desc { margin: 0; color: var(--text-dim); font-size: 14px; line-height: 1.55; flex: 1; }
@@ -1997,14 +1989,14 @@ figure.proj { margin: 0; }
 .dica { padding-block: 48px 24px; }
 .dica-container { max-width: 760px; }
 .dica-h1 {
-  font-family: 'Archivo Black', sans-serif; text-transform: uppercase;
+  font-family: var(--f-display), sans-serif; text-transform: uppercase;
   font-size: clamp(30px, 4.4vw, 52px); line-height: 1; letter-spacing: -0.03em;
   margin: 8px 0 16px; text-wrap: balance;
 }
 .dica-body { margin-top: 32px; font-size: 17px; line-height: 1.7; color: var(--text); }
 .dica-body p { margin: 0 0 18px; color: var(--text-dim); }
 .dica-body h2 {
-  font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.01em;
+  font-family: var(--f-archivo), sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.01em;
   margin: 40px 0 12px; color: var(--text);
 }
 .dica-body ul { margin: 0 0 18px; padding-left: 0; list-style: none; display: grid; gap: 10px; }
@@ -2017,13 +2009,13 @@ figure.proj { margin: 0; }
 .dica-service .svc-icon { color: var(--accent); }
 .dica-service-link {
   display: inline-flex; align-items: center; gap: 8px; margin-top: 6px;
-  font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none;
+  font-family: var(--f-archivo), sans-serif; font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none;
 }
 .dica-service-link:hover { color: var(--accent); }
 .dica-disclaimer { margin: 28px 0 0; font-size: 13px; color: var(--text-faint); line-height: 1.6; }
 .dica-others { margin-top: 40px; border-top: 1px solid var(--line); padding-top: 24px; }
 .dica-others h2 {
-  font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.16em;
+  font-family: var(--f-mono), monospace; font-size: 12px; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--text-faint); font-weight: 500; margin: 0 0 14px;
 }
 .dica-others ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
