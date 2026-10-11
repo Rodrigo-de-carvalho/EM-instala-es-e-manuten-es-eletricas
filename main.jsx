@@ -288,7 +288,7 @@ const Hero = ({ navigate }) => (
     <div className="container">
       <div className="hero-tag">
         <span className="pulse"></span>
-        Seg a Sáb · 7h às 17h · 20 anos no mercado
+        Salvador e região · Seg a Sáb · 7h às 17h
       </div>
       <h1 className="display hero-title">
         Energia<br/>
@@ -669,7 +669,7 @@ const FAQ = () => {
     { q: "Vocês desenvolvem projetos elétricos?", a: "Sim. Desenvolvemos projetos elétricos residenciais, comerciais e industriais com memorial de cálculo e todas as especificações técnicas necessárias." },
     { q: "Atendem pequenos serviços?", a: "Sim. Atendemos: instalação de lustres e luminárias, ventiladores de teto, troca de tomadas e interruptores, instalação de chuveiro elétrico, ponto elétrico para ar-condicionado, extensão e novos pontos elétricos, campainha e interfone, sensor de presença, troca de disjuntores e DPS, instalação de tomada USB, reparo de curto-circuito e lâmpada de emergência. Entre em contato e passamos o orçamento." },
     { q: "Trabalham com obra própria ou subempreitam?", a: "Equipe 100% própria, registrada, uniformizada e com NR-10 atualizada. Não terceirizamos mão de obra crítica, é o que garante padrão de execução e responsabilidade técnica." },
-    { q: "Atendem fora da capital?", a: "Sim, atendemos região metropolitana e cidades próximas. Para obras de maior porte, deslocamos a equipe para qualquer cidade do estado mediante orçamento prévio." },
+    { q: "Quais regiões vocês atendem?", a: "Atendemos Salvador e região metropolitana, como Lauro de Freitas, Camaçari e Simões Filho. Para obras de maior porte, deslocamos a equipe para outras cidades da Bahia mediante orçamento prévio." },
     { q: "Qual o horário de atendimento?", a: "Atendemos de segunda a sábado, das 7h às 17h. Para dúvidas e orçamentos, entre em contato pelo WhatsApp ou e-mail." },
   ];
   const [open, setOpen] = React.useState(0);
@@ -879,7 +879,8 @@ const Footer = ({ navigate }) => (
           <h6>Sobre</h6>
           <p style={{color: "var(--text-dim)", fontSize: 14, margin: 0, maxWidth: 360, lineHeight: 1.6}}>
             EM Instalações e Manutenções Elétricas. 20 anos executando obras elétricas
-            com equipe técnica certificada NR-10. CNPJ 57.594.909/0001-32.
+            em Salvador e região metropolitana, com equipe técnica certificada NR-10.
+            CNPJ 57.594.909/0001-32.
           </p>
         </div>
         <div className="footer-col">
@@ -1168,10 +1169,14 @@ const App = () => {
 
   return (
     <>
-      <a href="#conteudo" className="skip-link">Pular para o conteúdo</a>
+      <a
+        href="#conteudo"
+        className="skip-link"
+        onClick={e => { e.preventDefault(); document.getElementById("conteudo")?.focus(); }}
+      >Pular para o conteúdo</a>
       <div className="grid-bg"></div>
       <Nav page={page} navigate={navigate} />
-      <main id="conteudo" key={page} className="page-fade">
+      <main id="conteudo" tabIndex={-1} key={page} className="page-fade">
         <ErrorBoundary>{renderPage()}</ErrorBoundary>
       </main>
       <Footer navigate={navigate} />

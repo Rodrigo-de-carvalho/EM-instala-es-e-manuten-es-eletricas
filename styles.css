@@ -558,11 +558,12 @@ section {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 48px;
-  padding: 96px 0 48px;
+  padding-top: 96px;
+  padding-bottom: 48px;
   border-top: 1px solid var(--line);
 }
 @media (max-width: 860px) {
-  .section-head { grid-template-columns: 1fr; gap: 18px; padding: 64px 0 32px; }
+  .section-head { grid-template-columns: 1fr; gap: 18px; padding-top: 64px; padding-bottom: 32px; }
 }
 .section-head .sh-num {
   font-family: 'JetBrains Mono', monospace;
@@ -1629,7 +1630,7 @@ main > section:first-child .section-head { border-top: none; }
 
 /* ====== Section head mobile ====== */
 @media (max-width: 480px) {
-  .section-head { padding: 48px 0 24px; }
+  .section-head { padding-top: 48px; padding-bottom: 24px; }
 }
 
 /* ====== Testimonials mobile ====== */
@@ -1644,12 +1645,16 @@ main > section:first-child .section-head { border-top: none; }
 }
 
 /* ====== Cookie banner ====== */
+/* Cartão no canto inferior esquerdo; a margem direita deixa livre o botão
+   flutuante do WhatsApp (60px + 24px de recuo). */
 .cookie-banner {
   position: fixed;
-  bottom: 0; left: 0; right: 0;
+  bottom: 24px; left: 24px; right: 108px;
+  max-width: 640px;
   background: var(--bg-2);
-  border-top: 1px solid var(--line-strong);
-  padding: 14px 24px;
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1675,7 +1680,7 @@ main > section:first-child .section-head { border-top: none; }
   flex-shrink: 0;
 }
 @media (max-width: 540px) {
-  .cookie-banner { flex-direction: column; align-items: flex-start; }
+  .cookie-banner { flex-direction: column; align-items: flex-start; left: 12px; right: 96px; bottom: 16px; padding: 12px 14px; }
   .cookie-ok { width: 100%; text-align: center; padding: 12px 20px; }
 }
 
