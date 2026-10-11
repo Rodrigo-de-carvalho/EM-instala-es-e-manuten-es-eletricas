@@ -306,6 +306,7 @@ const Servicos = () => {
       n: "01", icon: "house", title: "Instalações residenciais",
       desc: "Projeto e execução completa, do fio à tomada. Casas, apartamentos, reformas e obras novas.",
       tags: ["Reformas", "Obras novas", "Padrão"], featured: true, span: 6,
+      img: "equipe-em-residencial", imgPos: "50% 20%", imgAlt: "Eletricistas da EM com camisa da empresa fazendo instalação em residência",
     },
     {
       n: "02", icon: "factory", title: "Comercial, industrial & saúde",
@@ -511,11 +512,16 @@ const Processo = () => {
 // ---------------------------- PORTFOLIO
 const Obras = () => {
   const projs = [
-    { title: "Eletroduto aparente em arena", meta: "Galvanizado · alimentação de painel", tag: "Comercial", size: "tall", img: "eletroduto-arena", pos: "50% 45%" },
-    { title: "Rack de rede e CFTV", meta: "Eletrodutos galvanizados", tag: "Rede · CFTV", size: "md", img: "rack-rede", pos: "50% 18%" },
+    { title: "Painel de transferência", meta: "Chave reversora · barramentos", tag: "Quadros", size: "tall", img: "painel-transferencia", pos: "50% 40%" },
+    { title: "Quadro de distribuição", meta: "Circuitos identificados · DR", tag: "Quadros", size: "md", img: "qdc-organizado", pos: "50% 45%" },
     { title: "Eletrocalha perfurada", meta: "Corte e montagem em obra", tag: "Infraestrutura", size: "md", img: "eletrocalha-corte", pos: "50% 60%" },
+    { title: "Iluminação em perfil de LED", meta: "Linhas de luz embutidas", tag: "Iluminação", size: "md", img: "iluminacao-led", pos: "50% 30%" },
+    { title: "Rack de rede e CFTV", meta: "Eletrodutos galvanizados", tag: "Rede · CFTV", size: "md", img: "rack-rede", pos: "50% 18%" },
+    { title: "Eletroduto aparente em arena", meta: "Galvanizado · alimentação de painel", tag: "Comercial", size: "md", img: "eletroduto-arena", pos: "50% 45%" },
     { title: "Infraestrutura de iluminação", meta: "Eletroduto e caixas no forro", tag: "Comercial", size: "md", img: "forro-iluminacao", pos: "50% 40%" },
+    { title: "Equipe EM em residência", meta: "Instalação em marcenaria", tag: "Residencial", size: "tall", img: "equipe-em-residencial", pos: "50% 30%" },
     { title: "Trabalho em altura", meta: "Andaime e cinto de segurança", tag: "Segurança", size: "md", img: "trabalho-altura", pos: "50% 40%" },
+    { title: "Ligação de drivers de LED", meta: "Iluminação residencial", tag: "Residencial", size: "md", img: "drivers-led", pos: "50% 55%" },
     { title: "Distribuição para rack", meta: "Eletroduto aparente em laje", tag: "Infraestrutura", size: "wide", img: "rack-eletrodutos", pos: "50% 33%" },
     { title: "Instalações em drywall", meta: "Eletroduto flexível em parede", tag: "Comercial", size: "wide", img: "drywall-infra", pos: "50% 55%" },
   ];
@@ -526,8 +532,8 @@ const Obras = () => {
         label="Obras realizadas"
         title="Obras <span class='accent'>de verdade,</span> entregues no prazo."
       >
-        Registros reais de obra: infraestrutura elétrica, eletrodutos, eletrocalhas,
-        racks e instalações em ambientes comerciais.
+        Registros reais de obra: quadros e painéis, iluminação, infraestrutura
+        elétrica e instalações residenciais e comerciais.
       </SectionHead>
       <div className="container">
         <div className="portfolio">
