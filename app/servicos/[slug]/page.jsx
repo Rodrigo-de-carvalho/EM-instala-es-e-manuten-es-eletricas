@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Icon, FAQ, InlineCTA } from "@/components/site";
 import { SERVICES, getService, SITE_URL, HOURS, waLink } from "@/lib/site";
 import { pageMeta } from "@/lib/meta";
+import { DICAS } from "@/lib/dicas";
 
 // Uma página estática por serviço, gerada no build.
 export const dynamicParams = false;
@@ -26,6 +27,7 @@ export default async function ServicePage({ params }) {
   const waText = `Olá! Vim pelo site e gostaria de um orçamento de ${s.title.toLowerCase()}.`;
   const idx = SERVICES.indexOf(s);
   const related = [1, 2, 3].map((k) => SERVICES[(idx + k) % SERVICES.length]);
+  const dicas = DICAS.filter((d) => d.service === s.slug);
 
   const jsonLd = [
     {
@@ -116,6 +118,22 @@ export default async function ServicePage({ params }) {
           num=""
           title={<>Dúvidas sobre <span className="accent">{s.title.toLowerCase()}</span></>}
         />
+      )}
+
+      {dicas.length > 0 && (
+        <section className="svc-dicas">
+          <div className="container">
+            {dicas.map((d) => (
+              <Link key={d.slug} href={`/dicas/${d.slug}`} className="dica-service">
+                <div className="svc-icon"><Icon name="eye" size={26} stroke={1.4} /></div>
+                <div>
+                  <div className="eyebrow">Dica · {d.minutes} min de leitura</div>
+                  <span className="dica-service-link">{d.title} <Icon name="arrow" size={14} /></span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
       )}
 
       <section className="svc-related">

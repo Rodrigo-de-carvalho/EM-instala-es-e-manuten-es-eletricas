@@ -276,6 +276,7 @@ export const Footer = () => (
             <li><Link href="/obras">Obras</Link></li>
             <li><Link href="/processo">Processo</Link></li>
             <li><Link href="/faq">FAQ</Link></li>
+            <li><Link href="/dicas">Dicas</Link></li>
           </ul>
         </div>
         <div className="footer-col">
