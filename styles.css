@@ -636,7 +636,7 @@ section {
 }
 .svc-photo {
   margin: -32px -28px 24px;
-  height: 200px;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   border-bottom: 1px solid var(--line-strong);
 }

@@ -352,13 +352,13 @@ const Servicos = () => {
       n: "01", icon: "house", title: "Instalações residenciais",
       desc: "Projeto e execução completa, do fio à tomada. Casas, apartamentos, reformas e obras novas.",
       tags: ["Reformas", "Obras novas", "Padrão"], featured: true, span: 6,
-      img: "equipe-em-residencial", imgPos: "50% 20%", imgAlt: "Eletricistas da EM com camisa da empresa fazendo instalação em residência",
+      img: "equipe-em-residencial", imgPos: "50% 22%", imgAlt: "Eletricistas da EM com camisa da empresa fazendo instalação em residência",
     },
     {
       n: "02", icon: "factory", title: "Comercial, industrial & saúde",
       desc: "Lojas, supermercados, escritórios, condomínios, galpões, fábricas, clínicas e hospitais. Instalações completas, motores, comandos elétricos, painéis e adequações técnicas em qualquer porte.",
       tags: ["Clínicas", "Hospitais", "Galpões", "Motores", "Painéis"], span: 6,
-      img: "eletrocalha-corte", imgPos: "50% 62%", imgAlt: "Eletricista cortando eletrocalha perfurada em obra comercial",
+      img: "eletrocalha-corte", imgPos: "50% 42%", imgAlt: "Eletricista cortando eletrocalha perfurada em obra comercial",
     },
     {
       n: "03", icon: "panel", title: "Quadros de distribuição",
@@ -418,7 +418,6 @@ const Servicos = () => {
       n: "11", icon: "cam", title: "Câmeras de segurança",
       desc: "Instalação e configuração de sistemas CFTV, câmeras IP, DVR e NVR. Monitoramento residencial e comercial com acesso remoto pelo celular.",
       tags: ["CFTV", "Câmera IP", "DVR/NVR", "Monitoramento", "Remoto"], span: 6,
-      img: "rack-rede", imgPos: "50% 18%", imgAlt: "Rack de rede com eletrodutos galvanizados instalado em laje",
     },
     {
       n: "12", icon: "drop", title: "Hidráulica",
@@ -560,7 +559,7 @@ const Obras = () => {
   const projs = [
     { title: "Painel de transferência", meta: "Chave reversora · barramentos", tag: "Quadros", size: "tall", img: "painel-transferencia", pos: "50% 40%" },
     { title: "Quadro de distribuição", meta: "Circuitos identificados · DR", tag: "Quadros", size: "md", img: "qdc-organizado", pos: "50% 45%" },
-    { title: "Eletrocalha perfurada", meta: "Corte e montagem em obra", tag: "Infraestrutura", size: "md", img: "eletrocalha-corte", pos: "50% 60%" },
+    { title: "Eletrocalha perfurada", meta: "Corte e montagem em obra", tag: "Infraestrutura", size: "md", img: "eletrocalha-corte", pos: "50% 38%" },
     { title: "Iluminação em perfil de LED", meta: "Linhas de luz embutidas", tag: "Iluminação", size: "md", img: "iluminacao-led", pos: "50% 30%" },
     { title: "Rack de rede e CFTV", meta: "Eletrodutos galvanizados", tag: "Rede · CFTV", size: "md", img: "rack-rede", pos: "50% 18%" },
     { title: "Eletroduto aparente em arena", meta: "Galvanizado · alimentação de painel", tag: "Comercial", size: "md", img: "eletroduto-arena", pos: "50% 45%" },
