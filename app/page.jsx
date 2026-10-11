@@ -2,7 +2,7 @@ import { Hero, Ticker, HomeServicesTeaser, Depoimentos, HomeCTA } from "@/compon
 import { pageMeta } from "@/lib/meta";
 
 export const metadata = pageMeta({
-  title: "EM Elétrica · Eletricista e Instalações Elétricas em Salvador e Região",
+  title: "EM Elétrica · Eletricista em Salvador e Região",
   absoluteTitle: true,
   description:
     "Instalações e manutenções elétricas em Salvador e região: residencial, comercial e industrial, quadros, padrão de entrada, SPDA, ar-condicionado, câmeras e hidráulica. Equipe própria NR-10. Orçamento grátis.",

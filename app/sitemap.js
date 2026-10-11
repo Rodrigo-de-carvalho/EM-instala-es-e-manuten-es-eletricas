@@ -1,8 +1,9 @@
 import { SERVICES, SITE_URL } from "@/lib/site";
+import { DICAS } from "@/lib/dicas";
 
 export default function sitemap() {
   const lastModified = new Date("2026-10-11");
-  const pages = ["", "/servicos", "/obras", "/sobre", "/processo", "/faq", "/contato", "/privacidade"];
+  const pages = ["", "/servicos", "/obras", "/sobre", "/processo", "/faq", "/dicas", "/contato", "/privacidade"];
   return [
     ...pages.map((p) => ({
       url: `${SITE_URL}${p}`,
@@ -15,6 +16,12 @@ export default function sitemap() {
       lastModified,
       changeFrequency: "monthly",
       priority: 0.8,
+    })),
+    ...DICAS.map((d) => ({
+      url: `${SITE_URL}/dicas/${d.slug}`,
+      lastModified: new Date(d.date),
+      changeFrequency: "yearly",
+      priority: 0.5,
     })),
   ];
 }

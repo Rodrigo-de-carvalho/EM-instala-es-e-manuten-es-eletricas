@@ -5,7 +5,7 @@ import { SITE_URL, SITE_NAME, COMPANY, CNPJ, EMAIL, PHONE_TEL, SERVICES } from "
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "EM Elétrica · Instalações e Manutenções Elétricas em Salvador e Região",
+    default: "EM Elétrica · Eletricista em Salvador e Região",
     template: "%s · EM Elétrica",
   },
   description:
