@@ -390,13 +390,24 @@ section {
   width: 8px; height: 8px;
   background: var(--ok);
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(248, 181, 0, 0.6);
+}
+/* Anel pulsando: anima só transform e opacity num pseudo-elemento, que o
+   navegador processa na GPU (animar box-shadow redesenha a cada quadro). */
+.hero-tag .pulse,
+.home-cta-dot { position: relative; }
+.hero-tag .pulse::after,
+.home-cta-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(248, 181, 0, 0.6);
   animation: pulse 1.6s ease-out infinite;
 }
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(248, 181, 0, 0.6); }
-  70% { box-shadow: 0 0 0 10px rgba(248, 181, 0, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(248, 181, 0, 0); }
+  0% { transform: scale(1); opacity: 1; }
+  70% { transform: scale(3.5); opacity: 0; }
+  100% { transform: scale(3.5); opacity: 0; }
 }
 
 .hero-title {
@@ -1477,7 +1488,6 @@ section {
   background: var(--accent);
   border-radius: 50%;
   flex-shrink: 0;
-  animation: pulse 1.6s ease-out infinite;
 }
 .home-cta-title {
   font-size: clamp(34px, 10vw, 136px);
